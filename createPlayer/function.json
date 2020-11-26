@@ -22,7 +22,8 @@
       "collectionName": "scores",
       "createIfNotExists": "true",
       "connectionStringSetting": "openhack_DOCUMENTDB",
-      "partitionKey": "/game"
+      "partitionKey": "/game",
+      "collectionThroughput": "400"
     }
   ]
 }

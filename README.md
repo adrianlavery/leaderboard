@@ -4,8 +4,24 @@ This code uses Azure functions and Azure Cosmos DB to create a leaderboard for a
 
 ## Getting started
 
-TODO
+### Create Player
 
+```
+curl --location --request POST 'https://localhost/createPlayer' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+"username": "adrlavery",
+"game": "game1"
+}'
+```
+If the CosmosDB collection doesn't exist, it will be created. The document will be created in the following format
+
+```
+{
+    "id": "adrlavery",
+    "game": "game1"
+}
+```
 
 ### Initial Configuration
 
@@ -18,8 +34,8 @@ TODO
 
 ## Contributing
 
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
+If you'd like to contribute, please fork the repository and use a feature
+branch. Pull requests are warmly welcome.
 
 ## Links
 
