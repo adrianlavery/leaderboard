@@ -4,10 +4,26 @@ This code uses Azure functions and Azure Cosmos DB to create a leaderboard for a
 
 ## Getting started
 
+### Initial Configuration
+
+Create an Azure CosmosDB account and add the connection string to your `local.settings.json`
+
+```
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "openhack_DOCUMENTDB": "<ConnectionString>"
+  }
+}
+
+```
+
 ### Create Player
 
 ```
-curl --location --request POST 'https://localhost/createPlayer' \
+curl --location --request POST 'https://localhost/api/createPlayer' \
 --header 'Content-Type: text/plain' \
 --data-raw '{
 "username": "adrlavery",
@@ -23,9 +39,26 @@ If the CosmosDB collection doesn't exist, it will be created. The document will 
 }
 ```
 
-### Initial Configuration
+### Update Player
 
-TODO
+```
+curl --location --request POST 'https://localhost/api/updatePlayer' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+"username": "adrlavery",
+"game": "game1",
+"score": "10"
+}'
+```
+The document will be updated in the following format
+
+```
+{
+    "id": "adrlavery",
+    "game": "game1",
+    "score": "10"
+}
+```
 
 ## Features
 
