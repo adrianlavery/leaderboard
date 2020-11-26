@@ -34,6 +34,13 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >
     && apt-get update \
     && apt-get install azure-functions-core-tools-3
 
+# Install Nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get -y update --no-install-recommends \
+    && apt-get -y install --no-install-recommends nodejs \
+    && apt-get autoremove -y \
+    && apt-get clean -y
+
 # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
 # RUN groupadd --gid $USER_GID $USERNAME \
 #     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
