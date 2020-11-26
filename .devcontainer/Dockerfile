@@ -24,6 +24,16 @@ RUN apt-get install -y apt-transport-https curl gnupg2 lsb-release \
     && apt-get update \
     && apt-get install -y azure-cli
 
+# Install Azure Functions Core Tools
+RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg \
+    && mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ \
+    && curl -sL https://packages.microsoft.com/config/debian/10/prod.list -o prod.list \
+    && mv prod.list /etc/apt/sources.list.d/microsoft-prod.list \
+    && chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg \
+    && chown root:root /etc/apt/sources.list.d/microsoft-prod.list \
+    && apt-get update \
+    && apt-get install azure-functions-core-tools-3
+
 # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
 # RUN groupadd --gid $USER_GID $USERNAME \
 #     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
