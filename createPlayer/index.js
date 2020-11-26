@@ -3,7 +3,7 @@ module.exports = async function (context, req) {
 
     if (req.body && req.body.username && req.body.game) {
         return {
-          leaderboard: {
+          playerDocument: {
             id: req.body.username,
             game: req.body.game,
           },
